@@ -1,3 +1,8 @@
+#Le PIB permet de comparer les performances économiques de différents pays .
+#Le PIB reste l’indicateur le plus utilisé pour illustrer la croissance économique et
+ peut être utile pour comparer les performances économiques de différents pays.
+
+
 CREATE TABLE pib_import (
 	country text NOT NULL,
 	iso3 char(3),
