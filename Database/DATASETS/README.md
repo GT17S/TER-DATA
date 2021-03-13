@@ -9,6 +9,13 @@ https://data.worldbank.org/indicator/IT.NET.USER.ZS.
 Pour faciliter l'intégration dans un SGBDR,nos  fichiers  ont  été transformé (avec l'utile de python).
 Les mises en forme ont été supprimées et les données annuelles ont été placées les unes à la suite des autres.
 
+Le code utilisé pour la transformation:
+   
+    df_in = pd.read_csv('csv_original.csv')
+    df_out = df_in.set_index(['Liste des colonnes à non transformé ']).stack().reset_index()
+    df_out.columns = ['Liste des colonnes final ']
+    df_out.to_csv('outfile.csv', index=False)
+
 Les résultats  se  trouvent  dans le fichiers suivants :
   * [ICT_USAGE_import.csv](./ICT_USAGE_import.csv) 
   * [pib_import.csv](./pib_import.csv)
