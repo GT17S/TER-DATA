@@ -19,6 +19,7 @@ Le code utilisé pour la transformation:
 Les résultats  se  trouvent  dans le fichiers suivants :
   * [ICT_USAGE_import.csv](./ICT_USAGE_import.csv) 
   * [pib_import.csv](./pib_import.csv)
+  * [serveur_securise_import](./serveur_securise_import.csv)
 
 ## Importation des données
 
@@ -29,4 +30,5 @@ utilisés comme source de donnéés pour un SGBDR .
 Ces fichiers sont utilisés comme source de données dans les scripts d'importations :
 * [ipu.sql](ipu.sql)
 * [pib.sql](pib.sql)
+* [serveur.sql](serveur.sql)
 
