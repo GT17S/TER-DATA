@@ -28,7 +28,7 @@ Les résultats  se  trouvent  dans le fichiers suivants :
 utilisés comme source de donnéés pour un SGBDR .
 
 Ces fichiers sont utilisés comme source de données dans les scripts d'importations :
-* [ipu.sql](ipu.sql)
+* [ipu.sql](IPU.sql)
 * [pib.sql](pib.sql)
 * [serveur.sql](serveur.sql)
 
