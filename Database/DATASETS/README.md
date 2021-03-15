@@ -24,7 +24,7 @@ Les résultats  se  trouvent  dans le fichiers suivants :
 ## Importation des données
 
 ### Création et peuplement des tables de données
- Ces 2 fichiers  [ICT_USAGE_import.csv](./ICT_USAGE_import.csv) et [pib_import.csv](./pib_import.csv) ont été 
+ Ces 3 fichiers  [ICT_USAGE_import.csv](./ICT_USAGE_import.csv) , [pib_import.csv](./pib_import.csv) et [serveur_securise_import](./serveur_securise_import.csv) ont été 
 utilisés comme source de donnéés pour un SGBDR .
 
 Ces fichiers sont utilisés comme source de données dans les scripts d'importations :
