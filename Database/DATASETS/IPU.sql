@@ -12,7 +12,7 @@ CREATE TABLE internet_usage_population_import (
 #si le fichier csv est delimiter avec un delimiter=; lors de sa sauvegarde
 copy internet_usage_population_import from 'ICT_USAGE_import.csv' WITH DELIMITER ';' CSV HEADER;   
 #sinon
-##copy internet_usage_population_import from 'ICT_USAGE_import.csv' WITH (format csv);   
+#copy internet_usage_population_import from 'ICT_USAGE_import.csv' WITH (format csv);   
 
 
 
@@ -37,24 +37,24 @@ UPDATE internet_usage_population_import SET country = 'Viet Nam' WHERE country =
 UPDATE internet_usage_population_import SET country = 'Virgin Islands, U.s.' WHERE country = 'Virgin Islands (U.S.)';
 
 
-CREATE TABLE ipu (
+CREATE TABLE IPU (
 	country_id int ,
     year integer NOT NULL,
     value numeric
 );
 
 
-INSERT INTO ipu 
+INSERT INTO IPU 
 SELECT countries.id, year , value
   FROM internet_usage_population_import
        JOIN
        countries ON internet_usage_population_import.country = nicename;
 
 
-ALTER TABLE ipu
+ALTER TABLE IPU
   ADD PRIMARY KEY (country_id, year);
 
-ALTER TABLE ipu
+ALTER TABLE IPU
   ADD FOREIGN KEY (country_id) REFERENCES countries(id);
 
 
