@@ -37,24 +37,24 @@ UPDATE internet_usage_population_import SET country = 'Viet Nam' WHERE country =
 UPDATE internet_usage_population_import SET country = 'Virgin Islands, U.s.' WHERE country = 'Virgin Islands (U.S.)';
 
 
-CREATE TABLE IPU (
+CREATE TABLE ipu (
 	country_id int ,
     year integer NOT NULL,
     value numeric
 );
 
 
-INSERT INTO IPU 
+INSERT INTO ipu 
 SELECT countries.id, year , value
   FROM internet_usage_population_import
        JOIN
        countries ON internet_usage_population_import.country = nicename;
 
 
-ALTER TABLE IPU
+ALTER TABLE ipu
   ADD PRIMARY KEY (country_id, year);
 
-ALTER TABLE IPU
+ALTER TABLE ipu
   ADD FOREIGN KEY (country_id) REFERENCES countries(id);
 
 
