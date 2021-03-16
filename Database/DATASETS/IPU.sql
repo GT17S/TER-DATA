@@ -12,7 +12,7 @@ CREATE TABLE internet_usage_population_import (
 #si le fichier csv est delimiter avec un delimiter=; lors de sa sauvegarde
 copy internet_usage_population_import from 'ICT_USAGE_import.csv' WITH DELIMITER ';' CSV HEADER;   
 #sinon
-copy internet_usage_population_import from 'ICT_USAGE_import.csv' WITH (format csv);   
+##copy internet_usage_population_import from 'ICT_USAGE_import.csv' WITH (format csv);   
 
 
 
