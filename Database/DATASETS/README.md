@@ -20,6 +20,7 @@ Les résultats  se  trouvent  dans le fichiers suivants :
   * [ICT_USAGE_import.csv](./ICT_USAGE_import.csv) 
   * [pib_import.csv](./pib_import.csv)
   * [serveur_securise_import](./serveur_securise_import.csv)
+  * [political-regime.csv](./political-regime.csv)
 
 ## Importation des données
 
@@ -31,4 +32,5 @@ Ces fichiers sont utilisés comme source de données dans les scripts d'importat
 * [ipu.sql](IPU.sql)
 * [pib.sql](pib.sql)
 * [serveur.sql](serveur.sql)
+* [political-regime.sql](serveur.sql)
 
