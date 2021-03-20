@@ -1,3 +1,5 @@
+#Dans ce fichier vous trouvez le pourcentage des non employees pour chaque pays pendant les dernières années
+#Ce fichier sera utile pour comparer le taux de piratage et l,augmentation ou diminution des non employees
 CREATE TABLE sjr_import (
 	country text NOT NULL,
     year integer NOT NULL,

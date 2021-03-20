@@ -21,11 +21,12 @@ Les résultats  se  trouvent  dans le fichiers suivants :
   * [pib_import.csv](./pib_import.csv)
   * [serveur_securise_import](./serveur_securise_import.csv)
   * [political-regime.csv](./political-regime.csv)
+  * [sans_job_import.csv](./sans_job_import.csv)
 
 ## Importation des données
 
 ### Création et peuplement des tables de données
- Ces 3 fichiers  [ICT_USAGE_import.csv](./ICT_USAGE_import.csv) , [pib_import.csv](./pib_import.csv) et [serveur_securise_import](./serveur_securise_import.csv) ont été 
+ Les fichiers  *.csv ont été 
 utilisés comme source de donnéés pour un SGBDR .
 
 Ces fichiers sont utilisés comme source de données dans les scripts d'importations :
@@ -33,4 +34,5 @@ Ces fichiers sont utilisés comme source de données dans les scripts d'importat
 * [pib.sql](pib.sql)
 * [serveur.sql](serveur.sql)
 * [political-regime.sql](political-regime.sql)
+* [sans_job.sql](non employés.sql)
 
