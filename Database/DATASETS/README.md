@@ -22,6 +22,7 @@ Les résultats  se  trouvent  dans le fichiers suivants :
   * [serveur_securise_import](./serveur_securise_import.csv)
   * [political-regime.csv](./political-regime.csv)
   * [sans_job_import.csv](./sans_job_import.csv)
+  * [imigration.csv](./imigration.csv)
 
 ## Importation des données
 
@@ -35,4 +36,5 @@ Ces fichiers sont utilisés comme source de données dans les scripts d'importat
 * [serveur.sql](serveur.sql)
 * [political-regime.sql](political-regime.sql)
 * [non_employees.sql](sans_job.sql)
+* [imigration.sql](imigration.sql)
 
