@@ -7,6 +7,7 @@ CREATE TABLE sjr_import (
 );
 
 copy sjr_import from 'sans_job_import.csv' WITH DELIMITER ';' CSV HEADER;
+
 SELECT DISTINCT country
   FROM sjr_import
  WHERE country NOT IN (SELECT nicename FROM countries);
@@ -39,11 +40,24 @@ UPDATE sjr_import SET country = 'Palestinian Territory, Occupied' WHERE country 
 UPDATE sjr_import SET country = 'Korea, Republic of' WHERE country = 'South Korea';
 UPDATE sjr_import SET country = 'Congo' WHERE country = 'Congo, Dem. Rep.';
 
+SELECT DISTINCT country
+  FROM sjr_import
+ WHERE country NOT IN (SELECT nicename FROM countries);
+
+
+
 CREATE TABLE SJR (
 	country_id int ,
     year integer NOT NULL,
     value numeric
 );
+
+INSERT INTO SJR
+SELECT countries.id, year , value
+  FROM sjr_import
+  JOIN
+       countries ON sjr_import.country = nicename;
+
 
 
 ALTER TABLE SJR
@@ -51,4 +65,5 @@ ALTER TABLE SJR
 
 ALTER TABLE SJR
   ADD FOREIGN KEY (country_id) REFERENCES countries(id);
-  drop table if exists sjr_import;
+
+drop table if exists sjr_import;
