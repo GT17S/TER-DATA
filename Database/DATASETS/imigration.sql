@@ -6,7 +6,7 @@
 CREATE TABLE imigration_import (
 	country text NOT NULL,
         year integer NOT NULL,
-        Migrant_Population text not null ,
+        Migrant_Population numeric not null ,
         Percentage_Of_Total_Population numeric not null 
 
 );
@@ -33,7 +33,7 @@ UPDATE imigration_import SET country = 'Korea, Republic of' WHERE country = 'Sou
 CREATE TABLE imigration (
 	country_id int ,
   year integer NOT NULL,
-  Migrant_Population text not null ,
+  Migrant_Population numeric not null ,
   Percentage_Of_Total_Population numeric not null 
 );
 
