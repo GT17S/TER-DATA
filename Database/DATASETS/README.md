@@ -23,6 +23,7 @@ Les résultats  se  trouvent  dans le fichiers suivants :
   * [political-regime.csv](./political-regime.csv)
   * [sans_job_import.csv](./sans_job_import.csv)
   * [imigration.csv](./imigration.csv)
+  * [acces_electricite_import.csv](./acces_electricite_import.csv)
 
 ## Importation des données
 
@@ -37,4 +38,5 @@ Ces fichiers sont utilisés comme source de données dans les scripts d'importat
 * [political-regime.sql](political-regime.sql)
 * [non_employees.sql](sans_job.sql)
 * [imigration.sql](imigration.sql)
+* [acces_electricite.sql](./acces_electricite.sql)
 
