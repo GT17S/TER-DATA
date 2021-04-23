@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.3.1.min.js" integrity="sha384-YF85VygJKMVnHE+lLv2AM93Vbstr0yo2TbIu5v8se5Rq3UQAUmcuh4aaJwNlpKwa" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="9e7f3e4c-0fbe-4348-ba6a-da139afbb6d7" data-root-id="1005"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="1153">
+          {"92ca421c-c217-449a-9f89-806474ae309e":{"defs":[],"roots":{"references":[{"attributes":{"text":"Share of adults who are obese, 2016"},"id":"1006","type":"Title"},{"attributes":{},"id":"1017","type":"BasicTicker"},{"attributes":{"high":40,"low":0,"palette":["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#0c2c84"]},"id":"1003","type":"LinearColorMapper"},{"attributes":{},"id":"1048","type":"AllLabels"},{"attributes":{},"id":"1049","type":"BasicTickFormatter"},{"attributes":{},"id":"1008","type":"DataRange1d"},{"attributes":{"source":{"id":"1002"}},"id":"1042","type":"CDSView"},{"attributes":{},"id":"1029","type":"HelpTool"},{"attributes":{"data_source":{"id":"1002"},"glyph":{"id":"1039"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1040"},"view":{"id":"1042"}},"id":"1041","type":"GlyphRenderer"},{"attributes":{"axis":{"id":"1016"},"grid_line_color":null,"ticker":null},"id":"1019","type":"Grid"},{"attributes":{},"id":"1050","type":"NoOverlap"},{"attributes":{"fill_color":{"field":"value","transform":{"id":"1003"}},"line_width":{"value":0.25},"xs":{"field":"xs"},"ys":{"field":"ys"}},"id":"1039","type":"Patches"},{"attributes":{},"id":"1014","type":"LinearScale"},{"attributes":{"formatter":{"id":"1049"},"major_label_policy":{"id":"1048"},"ticker":{"id":"1017"}},"id":"1016","type":"LinearAxis"},{"attributes":{"below":[{"id":"1016"},{"id":"1004"}],"center":[{"id":"1019"},{"id":"1023"}],"left":[{"id":"1020"}],"renderers":[{"id":"1041"}],"title":{"id":"1006"},"toolbar":{"id":"1031"},"toolbar_location":null,"width":950,"x_range":{"id":"1008"},"x_scale":{"id":"1012"},"y_range":{"id":"1010"},"y_scale":{"id":"1014"}},"id":"1005","subtype":"Figure","type":"Plot"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"field":"value","transform":{"id":"1003"}},"line_alpha":{"value":0.1},"line_width":{"value":0.25},"xs":{"field":"xs"},"ys":{"field":"ys"}},"id":"1040","type":"Patches"},{"attributes":{"geojson":"{\"type\": \"FeatureCollection\", \"features\": []}","selected":{"id":"1053"},"selection_policy":{"id":"1052"}},"id":"1002","type":"GeoJSONDataSource"},{"attributes":{},"id":"1012","type":"LinearScale"},{"attributes":{},"id":"1010","type":"DataRange1d"},{"attributes":{"color_mapper":{"id":"1003"},"height":20,"label_standoff":8,"location":[0,0],"major_label_overrides":{"0":"0%","10":"10%","15":"15%","20":"20%","25":"25%","30":"30%","35":"35%","40":"&gt;40%","5":"5%"},"major_label_policy":{"id":"1050"},"orientation":"horizontal","width":500},"id":"1004","type":"ColorBar"},{"attributes":{"axis":{"id":"1020"},"dimension":1,"grid_line_color":null,"ticker":null},"id":"1023","type":"Grid"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","syncable":false,"top_units":"screen"},"id":"1030","type":"BoxAnnotation"},{"attributes":{},"id":"1021","type":"BasicTicker"},{"attributes":{"active_multi":null,"tools":[{"id":"1024"},{"id":"1025"},{"id":"1026"},{"id":"1027"},{"id":"1028"},{"id":"1029"}]},"id":"1031","type":"Toolbar"},{"attributes":{},"id":"1025","type":"WheelZoomTool"},{"attributes":{},"id":"1024","type":"PanTool"},{"attributes":{"overlay":{"id":"1030"}},"id":"1026","type":"BoxZoomTool"},{"attributes":{},"id":"1052","type":"UnionRenderers"},{"attributes":{},"id":"1027","type":"SaveTool"},{"attributes":{},"id":"1045","type":"AllLabels"},{"attributes":{},"id":"1028","type":"ResetTool"},{"attributes":{},"id":"1046","type":"BasicTickFormatter"},{"attributes":{},"id":"1053","type":"Selection"},{"attributes":{"formatter":{"id":"1046"},"major_label_policy":{"id":"1045"},"ticker":{"id":"1021"}},"id":"1020","type":"LinearAxis"}],"root_ids":["1005"]},"title":"Bokeh Application","version":"2.3.1"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('1153').textContent;
+                  var render_items = [{"docid":"92ca421c-c217-449a-9f89-806474ae309e","root_ids":["1005"],"roots":{"1005":"9e7f3e4c-0fbe-4348-ba6a-da139afbb6d7"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
