@@ -16,14 +16,14 @@ Le code utilisé pour la transformation:
     df_out.columns = ['Liste des colonnes final ']
     df_out.to_csv('outfile.csv', index=False)
 
-Les résultats  se  trouvent  dans le fichiers suivants :
-  * [ICT_USAGE_import.csv](./ICT_USAGE_import.csv) 
-  * [pib_import.csv](./pib_import.csv)
-  * [serveur_securise_import](./serveur_securise_import.csv)
-  * [political-regime.csv](./political-regime.csv)
-  * [sans_job_import.csv](./sans_job_import.csv)
-  * [imigration.csv](./imigration.csv)
-  * [acces_electricite_import.csv](./acces_electricite_import.csv)
+Les résultats  se  trouvent  dans le fichiers suivants avec chaque lien ou le fichier CSV à été importer:
+  * [ICT_USAGE_import.csv](./ICT_USAGE_import.csv) [lien ici](https://data.worldbank.org/indicator/IT.NET.USER.ZS)
+  * [pib_import.csv](./pib_import.csv) [lien ici](https://data.worldbank.org/indicator/NY.GDP.PCAP.CD)
+  * [serveur_securise_import](./serveur_securise_import.csv) [lien ici](https://data.worldbank.org/indicator/IT.NET.SECR.P6)
+  * [political-regime.csv](./political-regime.csv) [lien ici](https://ourworldindata.org/democracy#world-maps-of-political-regimes-over-200-years)
+  * [sans_job_import.csv](./sans_job_import.csv) [lien ici](https://www.macrotrends.net/countries/ranking/unemployment-rate)
+  * [imigration.csv](./imigration.csv) [lien ici](https://www.macrotrends.net/countries/ranking/immigration-statistics)
+  * [acces_electricite_import.csv](./acces_electricite_import.csv) [lien ici](https://www.macrotrends.net/countries/ranking/electricity-access-statistics)
 
 ## Importation des données
 
