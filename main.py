@@ -1,22 +1,24 @@
-import multiprocessing
-import threading
-
-import pandas as pd  # (version 1.0.0)
-import plotly  # (version 4.5.0)
-import plotly.express as px
-import Connection as cx
-import matplotlib.pyplot as plt
 import dash  # (version 1.8.0)
 import dash_core_components as dcc
 import dash_html_components as html
+import matplotlib.pyplot as plt
+import pandas as pd  # (version 1.0.0)
+import plotly.express as px
+import psycopg2
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
 # print(px.data.gapminder()[:15])
 
+connection = psycopg2.connect(database="Ter_Piratage",
+                              user="postgres",
+                              password="Touf+0615",
+                              host="localhost",
+                              port=5432)
+
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
-it = pd.read_sql_query('''select nicename from countries''', cx.conn)
+it = pd.read_sql_query('''select nicename from countries''', connection)
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 # ---------------------------------------------------------------
@@ -52,7 +54,7 @@ def update_output(num_clicks, val_selected):
         raise PreventUpdate
     else:
         df = pd.read_sql_query('''select nicename,year,value as value from bsa,countries where country=nicename ''',
-                               cx.conn)
+                               connection)
         fig = px.choropleth(df, locations='nicename', color='value',
                             locationmode='country names',
                             color_continuous_scale=px.colors.sequential.Plasma,
@@ -68,7 +70,7 @@ def update_output(num_clicks, val_selected):
 
 
 def inche(str):
-    cursor = cx.conn.cursor()
+    cursor = connection.cursor()
     t = ("SELECT id FROM countries WHERE nicename= %s "
          )
 
@@ -78,90 +80,239 @@ def inche(str):
     from gmi g,countries s
     where g.country_id=s.id and s.nicename=%s
     ''')
-    df1 = pd.read_sql_query(test1, cx.conn, params=str)
+    df1 = pd.read_sql_query(test1, connection, params=str)
 
     test2 = ('''select B.year , B.value
                 from bsa B , countries C 
                  where C.id = B.country_id 
                 and C.nicename=%s ''')
 
-    df2 = pd.read_sql_query(test2, cx.conn, params=str)
+    df2 = pd.read_sql_query(test2, connection, params=str)
 
     test3 = ('''select I.year , I.percentage_of_total_population
                     from imigration I  , countries C 
                      where C.id = I.country_id 
                      and C.nicename=%s ''')
 
-    df3 = pd.read_sql_query(test3, cx.conn, params=str)
+    df3 = pd.read_sql_query(test3, connection, params=str)
 
     test4 = ('''select IP.year , IP.value
                 from ipu IP  , countries C 
                 where C.id = IP.country_id 
                 and C.nicename=%s ''')
 
-    df4 = pd.read_sql_query(test4, cx.conn, params=str)
+    df4 = pd.read_sql_query(test4, connection, params=str)
 
     test5 = ('''SELECT P.value::numeric(10,2) as value  , P.year as year
     FROM countries C , countries_in_regions CIR , world_regions WR , pib P  where  
     CIR.region_id = WR.id  AND CIR.country_id = C.id AND P.country_id = C.id and C.nicename=%s''')
 
-    df5 = pd.read_sql_query(test5, cx.conn, params=str)
+    df5 = pd.read_sql_query(test5, connection, params=str)
+
+
+    import matplotlib
+
+    matplotlib.use("TkAgg")
+    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+    from matplotlib.figure import Figure
 
     import tkinter as tk
-    from pandas import DataFrame
-    import matplotlib.pyplot as plt
-    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+    from tkinter import ttk
 
-    root = tk.Tk()
+    LARGE_FONT = ("Verdana", 12)
 
-    figure1 = plt.Figure(figsize=(3, 2), dpi=100)
-    ax1 = figure1.add_subplot(111)
-    ax1.plot(df1['year'], df1['personal'], color='red')
-    scatter1 = FigureCanvasTkAgg(figure1, root)
-    scatter1.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
-    ax1.legend([''])
-    ax1.set_xlabel('valeur de personals')
-    ax1.set_title('ev de personal ')
+    class Graphs(tk.Tk):
 
-    figure2 = plt.Figure(figsize=(3, 2), dpi=100)
-    ax2 = figure2.add_subplot(111)
-    ax2.plot(df2['year'], df2['value'], color='red')
-    scatter2 = FigureCanvasTkAgg(figure2, root)
-    scatter2.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
-    ax2.legend([''])
-    ax2.set_xlabel('valeur BSA')
-    ax2.set_title('Evolutiion des valeurs BSA depuis 1990 ')
+        def __init__(self, *args, **kwargs):
+            tk.Tk.__init__(self, *args, **kwargs)
 
-    figure3 = plt.Figure(figsize=(3, 2), dpi=100)
-    ax3 = figure3.add_subplot(111)
-    ax3.plot(df3['year'], df3['percentage_of_total_population'], color='red')
-    scatter3 = FigureCanvasTkAgg(figure3, root)
-    scatter3.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
-    ax3.legend([''])
-    ax3.set_xlabel("taux d'imigration")
-    ax3.set_title("Evolution des taux d'imigratan exprimé en %  ")
+            tk.Tk.wm_title(self, "Graphes et courbes")
 
-    figure4 = plt.Figure(figsize=(3, 2), dpi=100)
-    ax4 = figure4.add_subplot(111)
-    ax4.plot(df4['year'], df4['value'], color='green')
-    scatter4 = FigureCanvasTkAgg(figure4, root)
-    scatter4.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
-    ax4.legend([''])
-    ax4.set_xlabel(" % utilisation internet")
-    ax4.set_title("Evolution utulisation internet  exprimé en %  ")
+            container = tk.Frame(self)
+            container.pack(side="top", fill="both", expand=True)
+            container.grid_rowconfigure(0, weight=1)
+            container.grid_columnconfigure(0, weight=1)
 
-    figure5 = plt.Figure(figsize=(3, 2), dpi=100)
-    ax5 = figure5.add_subplot(111)
-    ax5.scatter(df5['year'], df5['value'], color='g')
-    scatter5 = FigureCanvasTkAgg(figure5, root)
-    scatter5.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
-    ax5.legend(['PIB'])
-    ax5.set_xlabel('vlauer de pib')
-    ax5.set_title('ev de pib depuis 1990')
+            self.frames = {}
 
-    root.mainloop()
+            for F in (StartPage, PageOne, PageTwo, PageThree, PageFour,PageFive):
+                frame = F(container, self)
+
+                self.frames[F] = frame
+
+                frame.grid(row=0, column=0, sticky="nsew")
+
+            self.show_frame(StartPage)
+
+        def show_frame(self, cont):
+            frame = self.frames[cont]
+            frame.tkraise()
+
+    class StartPage(tk.Frame):
+
+        def __init__(self, parent, controller):
+            tk.Frame.__init__(self, parent)
+            label = tk.Label(self, text="Informations de pays choisi" , font=LARGE_FONT)
+            label.pack(pady=10, padx=10)
+
+            button = ttk.Button(self, text="Personnels de GMI par années",
+                                command=lambda: controller.show_frame(PageOne))
+            button.pack()
+
+            button2 = ttk.Button(self, text="Valeur de BSA au fil des années",
+                                 command=lambda: controller.show_frame(PageTwo))
+            button2.pack()
+
+            button3 = ttk.Button(self, text="Pourcentage des imigrants dans ce pays par années",
+                                 command=lambda: controller.show_frame(PageThree))
+            button3.pack()
+
+            button4 = ttk.Button(self, text="Pourcentage des utilisateurs d'internet par années",
+                                 command=lambda: controller.show_frame(PageFour))
+            button4.pack()
+
+            button5 = ttk.Button(self, text="Evolution de PIB par années",
+                                 command=lambda: controller.show_frame(PageFive))
+            button5.pack()
+
+    class PageOne(tk.Frame):
+
+        def __init__(self, parent, controller):
+            tk.Frame.__init__(self, parent)
+            label = tk.Label(self, text="Personnels de GMI", font=LARGE_FONT)
+            label.pack(pady=10, padx=10)
+
+            button1 = ttk.Button(self, text="Retourner vers page principale",
+                                 command=lambda: controller.show_frame(StartPage))
+            button1.pack()
+
+            figure1 = Figure(figsize=(5, 5),dpi=100)
+            figure1.supylabel("Valeur des personnels")
+            figure1.supxlabel("Années")
+            figure1.suptitle("Evolution de personnels")
+
+            ax1 = figure1.add_subplot(111)
+            ax1.plot(df1['year'], df1['personal'], 'r.-')
+
+            canvas = FigureCanvasTkAgg(figure1, self)
+            canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+            toolbar = NavigationToolbar2Tk(canvas, self)
+            toolbar.update()
+            canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+    class PageTwo(tk.Frame):
+
+        def __init__(self, parent, controller):
+            tk.Frame.__init__(self, parent)
+            label = tk.Label(self, text="Valeur de BSA", font=LARGE_FONT)
+            label.pack(pady=10, padx=10)
+
+            button1 = ttk.Button(self, text="Retourner vers page principale",
+                                 command=lambda: controller.show_frame(StartPage))
+            button1.pack()
+
+            figure1 = Figure(figsize=(5, 5),dpi=100)
+            figure1.supylabel("Valeur")
+            figure1.supxlabel("Années")
+            figure1.suptitle("BSA value au fil des années")
+
+            ax1 = figure1.add_subplot(111)
+            ax1.plot(df2['year'], df2['value'], 'g.-')
+
+            canvas = FigureCanvasTkAgg(figure1, self)
+            canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+            toolbar = NavigationToolbar2Tk(canvas, self)
+            toolbar.update()
+            canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+    class PageThree(tk.Frame):
+
+        def __init__(self, parent, controller):
+            tk.Frame.__init__(self, parent)
+            label = tk.Label(self, text="Pourcentage de nombres d'imigrants dans ce pays", font=LARGE_FONT)
+            label.pack(pady=10, padx=10)
+
+            button1 = ttk.Button(self, text="Retourner vers page principale",
+                                 command=lambda: controller.show_frame(StartPage))
+            button1.pack()
+
+            figure1 = Figure(figsize=(5, 5),dpi=100)
+            figure1.supylabel("Pourcentage des Immigrants")
+            figure1.supxlabel("Années")
+            figure1.suptitle("Pourcentage des immigrants au fil des années")
+
+            ax1 = figure1.add_subplot(111)
+            ax1.plot(df3['year'], df3['percentage_of_total_population'], 'b.-')
+
+            canvas = FigureCanvasTkAgg(figure1, self)
+            canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+            toolbar = NavigationToolbar2Tk(canvas, self)
+            toolbar.update()
+            canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+    class PageFour(tk.Frame):
+
+        def __init__(self, parent, controller):
+            tk.Frame.__init__(self, parent)
+            label = tk.Label(self, text="Pourcentage de nombres d'utilisateurs d'internet dans ce pays au fil des années", font=LARGE_FONT)
+            label.pack(pady=10, padx=10)
+
+            button1 = ttk.Button(self, text="Retourner vers page principale",
+                                 command=lambda: controller.show_frame(StartPage))
+            button1.pack()
+
+            figure1 = Figure(figsize=(5, 5),dpi=100)
+            figure1.supylabel("Pourcentage d'usage d'internet")
+            figure1.supxlabel("Années")
+            figure1.suptitle("Pourcentage d'usage d'internet au fil des années")
+
+            ax1 = figure1.add_subplot(111)
+            ax1.plot(df4['year'], df4['value'], 'y.-')
+
+            canvas = FigureCanvasTkAgg(figure1, self)
+            canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+            toolbar = NavigationToolbar2Tk(canvas, self)
+            toolbar.update()
+            canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+    class PageFive(tk.Frame):
+
+        def __init__(self, parent, controller):
+            tk.Frame.__init__(self, parent)
+            label = tk.Label(self, text="Evolution de PIB depuis 1990", font=LARGE_FONT)
+            label.pack(pady=10, padx=10)
+
+            button1 = ttk.Button(self, text="Retourner vers page principale",
+                                 command=lambda: controller.show_frame(StartPage))
+            button1.pack()
+
+            figure1 = Figure(figsize=(5, 5),dpi=100)
+            figure1.supylabel("Valeur de PIB")
+            figure1.supxlabel("Années")
+            figure1.suptitle("Evolution de PIB national de 1990")
+
+            ax1 = figure1.add_subplot(111)
+            ax1.plot(df5['year'], df5['value'], 'r.-')
+
+            canvas = FigureCanvasTkAgg(figure1, self)
+            canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+            toolbar = NavigationToolbar2Tk(canvas, self)
+            toolbar.update()
+            canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+
+    app = Graphs()
+    app.mainloop()
 
 
 if __name__ == '__main__':
     plt.switch_backend('agg')
     app.run_server(debug=True, use_reloader=False)
+
+
+
