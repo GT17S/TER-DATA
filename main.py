@@ -68,7 +68,7 @@ def update_output(num_clicks, val_selected):
         fig = px.choropleth(df, locations='nicename', color='value',
                             locationmode='country names',
                             color_continuous_scale=px.colors.sequential.Plasma,
-                            title='VALEUR BSA ', animation_frame='year',
+                            title='Regions with Positive Cases', animation_frame='year',
                             )
 
         fig.update_layout(title=dict(font=dict(size=28),x=0.5,xanchor='center'),
