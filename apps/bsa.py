@@ -70,17 +70,7 @@ def update_output(num_clicks, val_selected):
                             color_continuous_scale=px.colors.sequential.Plasma,
                             title='Regions with Positive Cases', animation_frame='year',
                             )
-        js= '''fig.on('plotly_click',callPays)
-    def callPays(d) :
-    var pt = (d.points || [])[0]
-    // nom pays
-    print(pt.location)
 
-    locations: ['CANADA', 'USA', 'RUSSIA'];
-    console.log(pt.location);
-
-  )'''
-        #js2py.eval_js(js)
         fig.update_layout(title=dict(font=dict(size=28),x=0.5,xanchor='center'),
                           margin=dict(l=60, r=60, t=50, b=50))
         if num_clicks>=1:
@@ -89,12 +79,19 @@ def update_output(num_clicks, val_selected):
         return ('Le pays est : "{}" '.format(val_selected), fig)
 def hide_widget(str):
     wb = Workbook()
-
-    # add_sheet is used to create sheet.
     sheet1 = wb.add_sheet('Sheet 1')
+    test=('''select nicename,year,value as value from bsa,countries where country=%s ''')
+    df = pd.read_sql_query(test, cx.conn, params=str)
 
-    sheet1.write(1, 0, str)
-
+    sheet1.write(0, 0, 'PAYS')
+    sheet1.write(0, 1, 'Annee')
+    sheet1.write(0, 2, 'Valeur')
+    i=0
+    for py,an,va in df.iterrows():
+        i = i + 1
+        sheet1.write(i, 0, py)
+        sheet1.write(i, 1, an)
+        sheet1.write(i, 2, va)
 
     wb.save('xlwt example.xls')
 
