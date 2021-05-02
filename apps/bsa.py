@@ -1,18 +1,15 @@
 from tkinter import Label, font
-
-import xlwt
 from xlwt import Workbook
 import mplcursors
-import pandas as pd     #(version 1.0.0)
-import plotly           #(version 4.5.0)
+import pandas as pd     #(version 1.0.
 from tkinter import *
 import plotly.express as px
-import xlwings as xw
+#import xlwings as xw
 import self
-from matplotlib.backends._backend_tk import NavigationToolbar2Tk
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.pyplot import hist
-from yaml import scan
+#from matplotlib.backends._backend_tk import NavigationToolbar2Tk
+#from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+#from matplotlib.pyplot import hist
+#from yaml import scan
 
 import Database.conxion as cx
 import matplotlib.pyplot as plt
@@ -28,7 +25,7 @@ it=pd.read_sql_query('''select nicename from countries''',cx.conn)
 
 layout = html.Div([
     html.Div([
-        dcc.Link('Navigate to "/"', href='/'),
+        #dcc.Link('Navigate to "/"', href='/'),
         html.Br(),
 
     ]),
@@ -146,6 +143,59 @@ def inche(str):
 
     df5 = pd.read_sql_query(test5, cx.conn, params=str)
 
+    test6 = ('''select B.year , B.index
+                   from BSA B  , countries C 
+                   where C.id = B.country_id and C.nicename=%s ''')
+
+    df6 = pd.read_sql_query(test6, cx.conn, params=str)
+
+    test7 = ('''select PL.year , PL.value
+                   from political_regime PL  , countries C 
+                   where C.id = PL.country_id and C.nicename=%s and PL.value <=-20 ''')
+
+    df7 = pd.read_sql_query(test7, cx.conn, params=str)
+
+    test7_1 = ('''select PL.year , PL.value
+                      from political_regime PL  , countries C 
+                      where C.id = PL.country_id and C.nicename=%s and PL.value between -10 and -6 ''')
+
+    df7_1 = pd.read_sql_query(test7_1, cx.conn, params=str)
+
+    test7_2 = ('''select PL.year , PL.value
+                      from political_regime PL  , countries C 
+                      where C.id = PL.country_id and C.nicename=%s and PL.value between -5 and 0 ''')
+
+    df7_2 = pd.read_sql_query(test7_2, cx.conn, params=str)
+
+    test7_3 = ('''select PL.year , PL.value
+                      from political_regime PL  , countries C 
+                      where C.id = PL.country_id and C.nicename=%s and PL.value between 1 and 5''')
+
+    df7_3 = pd.read_sql_query(test7_3, cx.conn, params=str)
+
+    test7_4 = ('''select PL.year , PL.value
+                          from political_regime PL  , countries C 
+                          where C.id = PL.country_id and C.nicename=%s and PL.value between 6 and 10''')
+
+    df7_4 = pd.read_sql_query(test7_4, cx.conn, params=str)
+
+    test8 = ('''select SS.year , SS.value
+                   from serveur_securise SS  , countries C 
+                   where C.id = SS.country_id and  C.nicename=%s ''')
+
+    df8 = pd.read_sql_query(test8, cx.conn, params=str)
+
+    test9 = ('''select S.year , S.value
+                   from sjr S , countries C 
+                   where C.id = S.country_id  and  C.nicename=%s ''')
+
+    df9 = pd.read_sql_query(test9, cx.conn, params=str)
+
+    test10 = ('''select AE.year , AE.value
+                  from acces_electricite AE  , countries C 
+                  where C.id = AE.country_id and  C.nicename=%s ''')
+
+    df10 = pd.read_sql_query(test10, cx.conn, params=str)
 
     # from matplotlib.figure import Figure
 
@@ -200,7 +250,7 @@ def inche(str):
     #------------------------
 
 
-    ax1 = figure.add_subplot(321)
+    ax1 = figure.add_subplot(521)
     ax1.plot(df1['year'], df1['personal'], color='red')
     figure.tight_layout(pad=5)  # add space betwenn figure
     ax1.legend([''])
@@ -210,7 +260,7 @@ def inche(str):
     ax1.get_cursor_data(self)
 
     #-------------------------
-    ax2 = figure.add_subplot(322)
+    ax2 = figure.add_subplot(522)
     ax2.plot(df2['year'], df2['value'], color='red')
     ax2.legend([''])
     ax2.set_xlabel('valeur BSA')
@@ -218,7 +268,7 @@ def inche(str):
 
     #---------------------------
 
-    ax3 = figure.add_subplot(323)
+    ax3 = figure.add_subplot(523)
     ax3.plot(df3['year'], df3['percentage_of_total_population'], color='red')
     ax3.legend([''])
     ax3.set_xlabel("taux d'imigration")
@@ -226,7 +276,7 @@ def inche(str):
     #---------------------------
 
     #--------------------------
-    ax4 = figure.add_subplot(324)
+    ax4 = figure.add_subplot(524)
     ax4.plot(df4['year'], df4['value'], color='green')
     ax4.legend([''])
     ax4.set_xlabel(" % utilisation internet")
@@ -234,12 +284,60 @@ def inche(str):
     #-------------------------
 
     #------------------------
-    ax5 = figure.add_subplot(325)
+    ax5 = figure.add_subplot(525)
     ax5.scatter(df5['year'], df5['value'], color='g')
     ax5.legend(['PIB'])
     ax5.set_xlabel('vlauer de pib')
     ax5.set_title('ev de pib depuis 1990')
     #------------------------
+
+    # -----------------------------
+    ax6 = figure.add_subplot(526)
+    ax6.plot(df6['year'], df6['index'], color='r')
+    ax6.legend([''])
+    ax6.set_ylabel('Taux de Logiciel piraté')
+    ax6.set_xlabel("Year ")
+    ax6.set_title('Evolution  des taux de piratage de logiciel exprimé en % ')
+    # ------------------------------------------
+
+    # ----------------------------------------
+    ax7 = figure.add_subplot(527)
+    ax7.scatter(df7['year'], df7['value'], color='r', label='colonisé.')
+    ax7.scatter(df7_1['year'], df7_1['value'], color='g', label='autocracie')
+    ax7.scatter(df7_2['year'], df7_2['value'], color='c', label='closed anocracie')
+    ax7.scatter(df7_3['year'], df7_3['value'], color='k', label='open anocracie')
+    ax7.scatter(df7_4['year'], df7_4['value'], color='y', label='democracie')
+    legend = ax7.legend(loc='upper left', shadow=True, fontsize='x-large', prop={'size': 7})
+    ax7.set_ylabel('Regime Politice ')
+    ax7.set_xlabel("Year ")
+    ax7.set_title(' LE Régime Politice')
+    # ---------------------------------------
+    # ---------------------------------------
+    ax8 = figure.add_subplot(528)
+    ax8.plot(df8['year'], df8['value'], color='y')
+    ax8.legend([''])
+    ax8.set_ylabel('Nombre serveur sécurisé ')
+    ax8.set_xlabel("Year ")
+    ax8.set_title(' Le nombre de serveurs sécurisés par million d’habitants ')
+    # --------------------------------------
+
+    # ---------------------------------------
+    ax9 = figure.add_subplot(529)
+    ax9.plot(df9['year'], df9['value'], color='g')
+    ax9.legend([''])
+    ax9.set_ylabel('Taux de Chomage ')
+    ax9.set_xlabel("Year ")
+    ax9.set_title('Taux de chomage exprimé en  %  ')
+    # ---------------------------------------
+    # --------------------------------------
+    ax10 = figure.add_subplot(5, 2, 10)
+    ax10.plot(df10['year'], df10['value'], color='k')
+    ax10.legend([''])
+    ax10.set_ylabel(' accés électricité ')
+    ax10.set_xlabel("Year ")
+    ax10.set_title(" accès à l'électricité exprimé en   %  ")
+    # --------------------------------------
+
     crs1 = mplcursors.cursor(ax1, hover=True)
     crs2 = mplcursors.cursor(ax2, hover=True)
     crs3 = mplcursors.cursor(ax3, hover=True)
