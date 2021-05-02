@@ -65,7 +65,7 @@ def update_output(num_clicks, val_selected):
         fig = px.choropleth(df, locations='nicename', color='value',
                             locationmode='country names',
                             color_continuous_scale=px.colors.sequential.Plasma,
-                            title='Regions with Positive Cases', animation_frame='year',
+                            title='Valeur BSA des  différents pays du monde ', animation_frame='year',
                             )
 
         fig.update_layout(title=dict(font=dict(size=28),x=0.5,xanchor='center'),
@@ -207,7 +207,7 @@ def inche(str):
     tab1 = ttk.Frame(tabControl)
     tab2 = ttk.Frame(tabControl)
     tabControl.add(tab1, text='Courbes pour :'+format(', '.join(str)))
-    tabControl.add(tab2, text='Courbes de comparison ')
+    tabControl.add(tab2, text='Liens vers Libreoffice ')
     tabControl.pack(expand=1, fill="both")
 
     '''
@@ -255,7 +255,7 @@ def inche(str):
     figure.tight_layout(pad=5)  # add space betwenn figure
     ax1.legend([''])
     ax1.set_xlabel('valeur de personals')
-    ax1.set_title('ev de personal ')
+    ax1.set_title('Evolution de nombre  de personal ')
 
     ax1.get_cursor_data(self)
 
@@ -288,7 +288,7 @@ def inche(str):
     ax5.scatter(df5['year'], df5['value'], color='g')
     ax5.legend(['PIB'])
     ax5.set_xlabel('vlauer de pib')
-    ax5.set_title('ev de pib depuis 1990')
+    ax5.set_title('Evolution de pib depuis 1990')
     #------------------------
 
     # -----------------------------

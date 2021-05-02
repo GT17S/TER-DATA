@@ -12,7 +12,7 @@ from apps import bsa,compar
 app.app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
-        dcc.Link('Comparaison', href='/apps/compar'),
+        dcc.Link(' Cliquez ici pour la comparaison des différents données ', href='/apps/compar',style={"color": "red", "size":"30"}),
     ], className="row"),
     html.Div(id='page-content', children=[])
 ])
