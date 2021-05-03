@@ -200,8 +200,7 @@ def inche(str):
     # from matplotlib.figure import Figure
 
     root = tk.Tk()
-
-    root.geometry("1230x700")
+    root.geometry("1600x900")
     root.resizable(width=0, height=0)
     tabControl = ttk.Notebook(root)
     tab1 = ttk.Frame(tabControl)
@@ -228,7 +227,7 @@ def inche(str):
     canva.pack(fill='both', expand=True)
     fram2 = tk.Frame(canva)
     fram2.pack(fill='both', expand=True)
-    figure = plt.Figure(figsize=(12,12),dpi=100)
+    figure = plt.Figure(figsize=(16,16),dpi=100)
     scroll = Scrollbar(fram2, orient=VERTICAL, command=canva.yview)
     scroll.pack(side=tk.RIGHT, fill=tk.Y, expand=True, anchor="ne")
 
@@ -250,9 +249,9 @@ def inche(str):
     #------------------------
 
 
-    ax1 = figure.add_subplot(521)
+    ax1 = figure.add_subplot(526)
     ax1.plot(df1['year'], df1['personal'], color='red')
-    figure.tight_layout(pad=5)  # add space betwenn figure
+    figure.tight_layout(pad=8)  # add space betwenn figure
     ax1.legend([''])
     ax1.set_xlabel('valeur de personals')
     ax1.set_title('Evolution de nombre  de personal ')
@@ -292,8 +291,8 @@ def inche(str):
     #------------------------
 
     # -----------------------------
-    ax6 = figure.add_subplot(526)
-    ax6.plot(df6['year'], df6['index'], color='r')
+    ax6 = figure.add_subplot(521)
+    ax6.plot(df6['year'], df6['index'], color='g')
     ax6.legend([''])
     ax6.set_ylabel('Taux de Logiciel piraté')
     ax6.set_xlabel("Year ")
@@ -337,12 +336,13 @@ def inche(str):
     ax10.set_xlabel("Year ")
     ax10.set_title(" accès à l'électricité exprimé en   %  ")
     # --------------------------------------
-
+    '''
     crs1 = mplcursors.cursor(ax1, hover=True)
     crs2 = mplcursors.cursor(ax2, hover=True)
     crs3 = mplcursors.cursor(ax3, hover=True)
     crs4 = mplcursors.cursor(ax4, hover=True)
     crs5 = mplcursors.cursor(ax5, hover=True)
+    '''
     '''
     crs1.connect("add", lambda sel: sel.annotation.set_text(
     'Année : {}, valeur : {}'.format(sel.target[0], sel.target[1])))
