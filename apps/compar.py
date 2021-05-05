@@ -3,11 +3,11 @@ import dash_html_components as html
 from dash.dependencies import Input ,Output
 import plotly.express as px
 import app
-import Database.Requetes as rq
+import Database.Querries.CompareQuerries as Crq
 
 
 
-all_continent = rq.Evolution_PIB.continent.unique()
+all_continent = Crq.Evolution_PIB.continent.unique()
 
 all_options= ["Taux Piratage Logiciel","Taux Imigration","Taux de Chomage","Pourcentage Utilisation Internet","Military Personal Index Score","Military Expenditure Index Score","GMI Score","Heavy Weapons Index Score"
               ,"Nombre Homicides","Nombre Serveur Securisé","Evolution PIB","Acces électricité"]
@@ -36,69 +36,69 @@ layout = html.Div([
 )
 def display_value(donnee):
     if (donnee=="Taux Piratage Logiciel"):
-        mask = rq.Taux_de_piratage.continent.isin(all_continent)
-        fig = px.scatter(rq.Taux_de_piratage[mask],
+        mask = Crq.Taux_de_piratage.continent.isin(all_continent)
+        fig = px.scatter(Crq.Taux_de_piratage[mask],
                          x="year", y="value", color='name', title="Evolution  des taux de piratage de logiciel exprimé en %")
         return fig
 
     elif (donnee=="Taux Imigration"):
-        mask = rq.Taux_imigration.continent.isin(all_continent)
-        fig = px.line(rq.Taux_imigration[mask],
+        mask = Crq.Taux_imigration.continent.isin(all_continent)
+        fig = px.line(Crq.Taux_imigration[mask],
                       x = "year", y = "value", color = 'name', title = "Evolution des taux d'imigration exprimé en % ")
         return  fig
 
     elif (donnee=="Taux de Chomage"):
-        mask = rq.Taux_chomage.continent.isin(all_continent)
-        fig = px.line(rq.Taux_chomage[mask],
+        mask = Crq.Taux_chomage.continent.isin(all_continent)
+        fig = px.line(Crq.Taux_chomage[mask],
                       x="year", y="value", color='name', title="Evolution  taux de chomage exprimé en  %")
         return fig
     elif (donnee=="Pourcentage Utilisation Internet"):
-        mask = rq.Pourcentage_utulisation_internet.continent.isin(all_continent)
-        fig = px.line(rq.Pourcentage_utulisation_internet[mask],
+        mask = Crq.Pourcentage_utulisation_internet.continent.isin(all_continent)
+        fig = px.line(Crq.Pourcentage_utulisation_internet[mask],
                       x="year", y="value", color='name', title="Evolution utulisation internet  exprimé en %  ")
         return fig
 
     elif (donnee == "Military Personal Index Score"):
-        mask = rq.Military_personnal_index_score.continent.isin(all_continent)
-        fig = px.line(rq.Military_personnal_index_score[mask],
+        mask = Crq.Military_personnal_index_score.continent.isin(all_continent)
+        fig = px.line(Crq.Military_personnal_index_score[mask],
                       x="year", y="personal", color='name', title=" Evolution du Personnel Militaire ")
         return fig
     elif (donnee == "Military Expenditure Index Score"):
-        mask = rq.Military_expenditure_index_score.continent.isin(all_continent)
-        fig = px.scatter(rq.Military_expenditure_index_score[mask],
+        mask = Crq.Military_expenditure_index_score.continent.isin(all_continent)
+        fig = px.scatter(Crq.Military_expenditure_index_score[mask],
                          x="year", y="expenditure", color='name', title=" dépense militaire exprimé en Milliards de dollar ")
         return fig
     elif (donnee == "GMI Score"):
-        mask = rq.Gmi_score.continent.isin(all_continent)
-        fig = px.scatter(rq.Gmi_score[mask],
+        mask = Crq.Gmi_score.continent.isin(all_continent)
+        fig = px.scatter(Crq.Gmi_score[mask],
                          x="year", y="score", color='name', title=" GMI Score  ")
         return fig
 
     elif (donnee == "Heavy Weapons Index Score"):
-        mask = rq.Heavy_weapons_index_score.continent.isin(all_continent)
-        fig = px.scatter(rq.Heavy_weapons_index_score[mask],
+        mask = Crq.Heavy_weapons_index_score.continent.isin(all_continent)
+        fig = px.scatter(Crq.Heavy_weapons_index_score[mask],
                          x="year", y="weapons", color='name', title=" GMI Score  ")
         return fig
 
     elif (donnee == "Nombre Homicides"):
-        mask = rq.Nombre_homicides.continent.isin(all_continent)
-        fig = px.scatter(rq.Nombre_homicides[mask],
+        mask = Crq.Nombre_homicides.continent.isin(all_continent)
+        fig = px.scatter(Crq.Nombre_homicides[mask],
                          x="year", y="value", color='name', title=" Nombre Homicides  ")
         return fig
 
     elif (donnee == "Nombre Serveur Securisé"):
-        mask = rq.Nombre_de_serveurs_securise.continent.isin(all_continent)
-        fig = px.scatter(rq.Nombre_de_serveurs_securise[mask],
+        mask = Crq.Nombre_de_serveurs_securise.continent.isin(all_continent)
+        fig = px.scatter(Crq.Nombre_de_serveurs_securise[mask],
                          x="year", y="value", color='name', title=" Nombre Serveur Securisé par million d'habitants  ")
         return fig
     elif (donnee=="Evolution PIB"):
-        mask = rq.Evolution_PIB.continent.isin(all_continent)
-        fig = px.scatter(rq.Evolution_PIB[mask],
+        mask = Crq.Evolution_PIB.continent.isin(all_continent)
+        fig = px.scatter(Crq.Evolution_PIB[mask],
                          x="year", y="value", color='name', title="Evolution  PIB ")
         return fig
     elif (donnee == "Acces électricité"):
-        mask = rq.Acces_electricite.continent.isin(all_continent)
-        fig = px.scatter(rq.Acces_electricite[mask],
+        mask = Crq.Acces_electricite.continent.isin(all_continent)
+        fig = px.scatter(Crq.Acces_electricite[mask],
                          x="year", y="value", color='name', title="Acces électricité exprimé en % ")
         return fig
 

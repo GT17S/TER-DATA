@@ -20,7 +20,7 @@ from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 import app
 import js2py
-import Database.Requetes as rq
+import Database.Querries.BSAQuerries as BSArq
 
 it=pd.read_sql_query('''select nicename from countries''',cx.conn)
 
@@ -78,7 +78,7 @@ def update_output(num_clicks, val_selected):
 def hide_widget(str):
     wb = Workbook()
     sheet1 = wb.add_sheet('Sheet 1')
-    df = pd.read_sql_query(rq.Bsa_value, cx.conn, params=str)
+    df = pd.read_sql_query(BSArq.Bsa_value, cx.conn, params=str)
 
     sheet1.write(0, 0, 'PAYS')
     sheet1.write(0, 1, 'Annee')
@@ -110,20 +110,20 @@ def inche(str):
 
     # Execute cursor.
     #utilisation des requetes des courbes ici, pour creer les dataframes necessaire pour les afficher en courbes
-    df1 = pd.read_sql_query(rq.Evolution_de_nombre_de_personels, cx.conn, params=str)
-    df2 = pd.read_sql_query(rq.Evolution_des_valeurs_BSA_depuis_1990, cx.conn, params=str)
-    df3 = pd.read_sql_query(rq.Evolution_des_taux_imigrants, cx.conn, params=str)
-    df4 = pd.read_sql_query(rq.Evolution_utilisation_internet, cx.conn, params=str)
-    df5 = pd.read_sql_query(rq.Evolution_PIB_depuis_1990, cx.conn, params=str)
-    df6 = pd.read_sql_query(rq.Evolution_des_taux_de_piratage_de_logiciel, cx.conn, params=str)
-    df7 = pd.read_sql_query(rq.colonise, cx.conn, params=str)
-    df7_1 = pd.read_sql_query(rq.autocracie, cx.conn, params=str)
-    df7_2 = pd.read_sql_query(rq.closed_anocracie, cx.conn, params=str)
-    df7_3 = pd.read_sql_query(rq.open_anocracie, cx.conn, params=str)
-    df7_4 = pd.read_sql_query(rq.democracie, cx.conn, params=str)
-    df8 = pd.read_sql_query(rq.Nombre_de_serveurs_securise, cx.conn, params=str)
-    df9 = pd.read_sql_query(rq.Taux_de_chomage, cx.conn, params=str)
-    df10 = pd.read_sql_query(rq.Acces_electricite, cx.conn, params=str)
+    df1 = pd.read_sql_query(BSArq.Evolution_de_nombre_de_personels, cx.conn, params=str)
+    df2 = pd.read_sql_query(BSArq.Evolution_des_valeurs_BSA_depuis_1990, cx.conn, params=str)
+    df3 = pd.read_sql_query(BSArq.Evolution_des_taux_imigrants, cx.conn, params=str)
+    df4 = pd.read_sql_query(BSArq.Evolution_utilisation_internet, cx.conn, params=str)
+    df5 = pd.read_sql_query(BSArq.Evolution_PIB_depuis_1990, cx.conn, params=str)
+    df6 = pd.read_sql_query(BSArq.Evolution_des_taux_de_piratage_de_logiciel, cx.conn, params=str)
+    df7 = pd.read_sql_query(BSArq.colonise, cx.conn, params=str)
+    df7_1 = pd.read_sql_query(BSArq.autocracie, cx.conn, params=str)
+    df7_2 = pd.read_sql_query(BSArq.closed_anocracie, cx.conn, params=str)
+    df7_3 = pd.read_sql_query(BSArq.open_anocracie, cx.conn, params=str)
+    df7_4 = pd.read_sql_query(BSArq.democracie, cx.conn, params=str)
+    df8 = pd.read_sql_query(BSArq.Nombre_de_serveurs_securise, cx.conn, params=str)
+    df9 = pd.read_sql_query(BSArq.Taux_de_chomage, cx.conn, params=str)
+    df10 = pd.read_sql_query(BSArq.Acces_electricite, cx.conn, params=str)
 
     # from matplotlib.figure import Figure
 
