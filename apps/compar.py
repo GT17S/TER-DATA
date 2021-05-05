@@ -1,83 +1,13 @@
-import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input ,Output
 import plotly.express as px
-import pandas as pd
-import Database.conxion as cx
 import app
-
-#----------------------------------
-test1 = pd.read_sql_query('''SELECT C.name as name  , P.value::numeric(10,2) as value  , P.year as year ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , pib P  where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND P.country_id = C.id order by C.name''',cx.conn)
-#----------------------------------
-
-#----------------------------------
-test2 = pd.read_sql_query('''SELECT C.name as name  , I.percentage_of_total_population as value  , I.year as year ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , Imigration I 
-where CIR.region_id = WR.id  AND CIR.country_id = C.id AND I.country_id = C.id order by C.name''',cx.conn)
-#-----------------------------------
-#-----------------------------------
-test3= pd.read_sql_query('''SELECT C.name as name  , S.year as year , S.value as value ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , sjr S where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND S.country_id = C.id order by C.name ''',cx.conn)
-#-----------------------------------
-
-#----------------------------------
-test4 =pd.read_sql_query(''' SELECT C.name as name  , G.year as year , G.personal as personal ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , gmi G  where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND G.country_id = C.id order by C.name ''',cx.conn)
-#----------------------------------
-
-#----------------------------------
-test5 =pd.read_sql_query(''' SELECT C.name as name  , G.year as year , G.expenditure as expenditure ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , gmi G  where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND G.country_id = C.id order by C.name ''',cx.conn)
-#----------------------------------
-
-#----------------------------------
-test6 =pd.read_sql_query(''' SELECT C.name as name  , G.year as year , G.weapons as weapons ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , gmi G  where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND G.country_id = C.id order by C.name ''',cx.conn)
-#----------------------------------
-
-#----------------------------------
-test7 =pd.read_sql_query(''' SELECT C.name as name  , G.year as year , G.score as score ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , gmi G  where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND G.country_id = C.id order by C.name ''',cx.conn)
-#-----------------------------------
-
-#----------------------------------
-test8 =pd.read_sql_query(''' SELECT C.name as name  , H.year as year , H.count as value ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , homicides H where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND H.country_id = C.id order by C.name  ''',cx.conn)
-#-----------------------------------
-
-#----------------------------------
-test9 =pd.read_sql_query(''' SELECT C.name as name  , AE.year as year , AE.value as value ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , acces_electricite AE where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND AE.country_id = C.id order by C.name  ''',cx.conn)
-#-----------------------------------
-
-#----------------------------------
-test10 =pd.read_sql_query('''  SELECT C.name as name  , IP.year as year , IP.value as value ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , IPU IP where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND IP.country_id = C.id order by C.name ''',cx.conn)
-#-----------------------------------
-#----------------------------------
-test11 =pd.read_sql_query(''' SELECT C.name as name  , SS.year as year , SS.value as value ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR , serveur_securise SS where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND SS.country_id = C.id order by C.name ''',cx.conn)
-#-----------------------------------
-
-test12 =pd.read_sql_query('''SELECT C.name as name  , B.year as year , B.index as value ,WR.parent as continent
-FROM countries C , countries_in_regions CIR , world_regions WR ,BSA B where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND B.country_id = C.id order by C.name''',cx.conn)
-#-----------------------------------
+import Database.Requetes as rq
 
 
-all_continent = test1.continent.unique()
+
+all_continent = rq.Evolution_PIB.continent.unique()
 
 all_options= ["Taux Piratage Logiciel","Taux Imigration","Taux de Chomage","Pourcentage Utilisation Internet","Military Personal Index Score","Military Expenditure Index Score","GMI Score","Heavy Weapons Index Score"
               ,"Nombre Homicides","Nombre Serveur Securisé","Evolution PIB","Acces électricité"]
@@ -106,69 +36,69 @@ layout = html.Div([
 )
 def display_value(donnee):
     if (donnee=="Taux Piratage Logiciel"):
-        mask = test12.continent.isin(all_continent)
-        fig = px.scatter(test12[mask],
-                      x="year", y="value", color='name', title="Evolution  des taux de piratage de logiciel exprimé en %")
+        mask = rq.Taux_de_piratage.continent.isin(all_continent)
+        fig = px.scatter(rq.Taux_de_piratage[mask],
+                         x="year", y="value", color='name', title="Evolution  des taux de piratage de logiciel exprimé en %")
         return fig
 
     elif (donnee=="Taux Imigration"):
-        mask = test2.continent.isin(all_continent)
-        fig = px.line(test2[mask],
-         x = "year", y = "value", color = 'name',title = "Evolution des taux d'imigration exprimé en % ")
+        mask = rq.Taux_imigration.continent.isin(all_continent)
+        fig = px.line(rq.Taux_imigration[mask],
+                      x = "year", y = "value", color = 'name', title = "Evolution des taux d'imigration exprimé en % ")
         return  fig
 
     elif (donnee=="Taux de Chomage"):
-        mask = test3.continent.isin(all_continent)
-        fig = px.line(test3[mask],
+        mask = rq.Taux_chomage.continent.isin(all_continent)
+        fig = px.line(rq.Taux_chomage[mask],
                       x="year", y="value", color='name', title="Evolution  taux de chomage exprimé en  %")
         return fig
     elif (donnee=="Pourcentage Utilisation Internet"):
-        mask = test10.continent.isin(all_continent)
-        fig = px.line(test10[mask],
+        mask = rq.Pourcentage_utulisation_internet.continent.isin(all_continent)
+        fig = px.line(rq.Pourcentage_utulisation_internet[mask],
                       x="year", y="value", color='name', title="Evolution utulisation internet  exprimé en %  ")
         return fig
 
     elif (donnee == "Military Personal Index Score"):
-        mask = test4.continent.isin(all_continent)
-        fig = px.line(test4[mask],
+        mask = rq.Military_personnal_index_score.continent.isin(all_continent)
+        fig = px.line(rq.Military_personnal_index_score[mask],
                       x="year", y="personal", color='name', title=" Evolution du Personnel Militaire ")
         return fig
     elif (donnee == "Military Expenditure Index Score"):
-        mask = test5.continent.isin(all_continent)
-        fig = px.scatter(test5[mask],
-                      x="year", y="expenditure", color='name', title=" dépense militaire exprimé en Milliards de dollar ")
+        mask = rq.Military_expenditure_index_score.continent.isin(all_continent)
+        fig = px.scatter(rq.Military_expenditure_index_score[mask],
+                         x="year", y="expenditure", color='name', title=" dépense militaire exprimé en Milliards de dollar ")
         return fig
     elif (donnee == "GMI Score"):
-        mask = test7.continent.isin(all_continent)
-        fig = px.scatter(test7[mask],
-                      x="year", y="score", color='name', title=" GMI Score  ")
+        mask = rq.Gmi_score.continent.isin(all_continent)
+        fig = px.scatter(rq.Gmi_score[mask],
+                         x="year", y="score", color='name', title=" GMI Score  ")
         return fig
 
     elif (donnee == "Heavy Weapons Index Score"):
-        mask = test6.continent.isin(all_continent)
-        fig = px.scatter(test6[mask],
-                      x="year", y="weapons", color='name', title=" GMI Score  ")
+        mask = rq.Heavy_weapons_index_score.continent.isin(all_continent)
+        fig = px.scatter(rq.Heavy_weapons_index_score[mask],
+                         x="year", y="weapons", color='name', title=" GMI Score  ")
         return fig
 
     elif (donnee == "Nombre Homicides"):
-        mask = test8.continent.isin(all_continent)
-        fig = px.scatter(test8[mask],
+        mask = rq.Nombre_homicides.continent.isin(all_continent)
+        fig = px.scatter(rq.Nombre_homicides[mask],
                          x="year", y="value", color='name', title=" Nombre Homicides  ")
         return fig
 
     elif (donnee == "Nombre Serveur Securisé"):
-        mask = test11.continent.isin(all_continent)
-        fig = px.scatter(test11[mask],
+        mask = rq.Nombre_de_serveurs_securise.continent.isin(all_continent)
+        fig = px.scatter(rq.Nombre_de_serveurs_securise[mask],
                          x="year", y="value", color='name', title=" Nombre Serveur Securisé par million d'habitants  ")
         return fig
     elif (donnee=="Evolution PIB"):
-        mask = test1.continent.isin(all_continent)
-        fig = px.scatter(test1[mask],
-                      x="year", y="value", color='name', title="Evolution  PIB ")
+        mask = rq.Evolution_PIB.continent.isin(all_continent)
+        fig = px.scatter(rq.Evolution_PIB[mask],
+                         x="year", y="value", color='name', title="Evolution  PIB ")
         return fig
     elif (donnee == "Acces électricité"):
-        mask = test9.continent.isin(all_continent)
-        fig = px.scatter(test9[mask],
+        mask = rq.Acces_electricite.continent.isin(all_continent)
+        fig = px.scatter(rq.Acces_electricite[mask],
                          x="year", y="value", color='name', title="Acces électricité exprimé en % ")
         return fig
 
