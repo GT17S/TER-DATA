@@ -200,8 +200,10 @@ def inche(str):
     # from matplotlib.figure import Figure
 
     root = tk.Tk()
-    root.geometry("1600x900")
-    root.resizable(width=0, height=0)
+    #root.geometry("1600x900")
+    root.fullScreenState = False
+    root.attributes("-fullscreen", root.fullScreenState)
+    #root.resizable(width=0, height=0)
     tabControl = ttk.Notebook(root)
     tab1 = ttk.Frame(tabControl)
     tab2 = ttk.Frame(tabControl)
