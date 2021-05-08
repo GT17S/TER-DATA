@@ -1,25 +1,16 @@
 from tkinter import Label, font
 from xlwt import Workbook
 import mplcursors
-import pandas as pd     #(version 1.0.
+import pandas as pd
 from tkinter import *
 import plotly.express as px
-#import xlwings as xw
 import self
-#from matplotlib.backends._backend_tk import NavigationToolbar2Tk
-#from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-#from matplotlib.pyplot import hist
-#from yaml import scan
-
 import Database.conxion as cx
-import matplotlib.pyplot as plt
-import dash             #(version 1.8.0)
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 import app
-import js2py
 import Database.Querries.BSAQuerries as BSArq
 
 it=pd.read_sql_query('''select nicename from countries''',cx.conn)
@@ -75,6 +66,7 @@ def update_output(num_clicks, val_selected):
             inche(val_selected)
 
         return ('Le pays est : "{}" '.format(val_selected), fig)
+'''
 def hide_widget(str):
     wb = Workbook()
     sheet1 = wb.add_sheet('Sheet 1')
@@ -94,7 +86,7 @@ def hide_widget(str):
 
     print(str)
     print("it works")
-
+'''
 def inche(str):
     import pandas as pd
     from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -139,16 +131,11 @@ def inche(str):
     tabControl.add(tab2, text='Liens vers Libreoffice ')
     tabControl.pack(expand=1, fill="both")
 
-    '''
-    button_hide = Button(root, text="Masque les courbes pour la pays ", command=lambda: hide_widget(fram))
-    button_hide.pack(pady=0)
-    button_show = Button(root, text="afficher les courbes pour le pays ", command=lambda: show_widget(canva,fram))
-    button_show.pack()
-    '''
+
     fram = tk.Frame(tab1)
     fram.pack(fill='both', expand=True, padx=0, pady=0)
     myFont = font.Font(family='Helvetica', size=20, weight='bold')
-    b1 = tk.Button(fram, text='Courbes pour :'+format(', '.join(str)), borderwidth=0,command=lambda :hide_widget(str))
+    b1 = tk.Button(fram, text='Courbes pour :'+format(', '.join(str)), borderwidth=0)#lambda hide widghet
     b1['font'] = myFont
 
     b1.pack()
@@ -269,25 +256,7 @@ def inche(str):
     ax10.set_xlabel("Années")
     ax10.set_title("Accès à l'électricité éxprimé en % ")
     # --------------------------------------
-    '''
-    crs1 = mplcursors.cursor(ax1, hover=True)
-    crs2 = mplcursors.cursor(ax2, hover=True)
-    crs3 = mplcursors.cursor(ax3, hover=True)
-    crs4 = mplcursors.cursor(ax4, hover=True)
-    crs5 = mplcursors.cursor(ax5, hover=True)
-    '''
-    '''
-    crs1.connect("add", lambda sel: sel.annotation.set_text(
-    'Année : {}, valeur : {}'.format(sel.target[0], sel.target[1])))
-    crs2.connect("add", lambda sel: sel.annotation.set_text(
-        'Point {},{}'.format(sel.target[0], sel.target[1])))
-    crs3.connect("add", lambda sel: sel.annotation.set_text(
-        'Point {},{}'.format(sel.target[0], sel.target[1])))
-    crs4.connect("add", lambda sel: sel.annotation.set_text(
-        'Point {},{}'.format(sel.target[0], sel.target[1])))
-    crs5.connect("add", lambda sel: sel.annotation.set_text(
-        'Point {},{}'.format(sel.target[0], sel.target[1])))
-    '''
+
     #---------------2 section ---------------------
 
     fram3 = tk.Frame(tab2)
@@ -297,10 +266,7 @@ def inche(str):
     b2['font'] = myFont2
 
     b2.pack()
-    #fram --->fram 3
-    #fram2 ---> fram 4
-    #canvas--->canvas 2
-    #figure --->figure 2
+
     canva2 = tk.Canvas(fram3)
     canva2.pack(fill='both', expand=True)
     fram4= tk.Frame(canva2)
