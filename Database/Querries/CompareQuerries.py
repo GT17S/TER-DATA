@@ -14,25 +14,25 @@ CIR.region_id = WR.id  AND CIR.country_id = C.id AND P.country_id = C.id order b
 #----------------------------------
 Taux_imigration = pd.read_sql_query('''SELECT C.name as name  , I.percentage_of_total_population as value  , I.year as year ,WR.parent as continent
 FROM countries C , countries_in_regions CIR , world_regions WR , Imigration I 
-where CIR.region_id = WR.id  AND CIR.country_id = C.id AND I.country_id = C.id order by C.name''', cx.conn)
+where CIR.region_id = WR.id  AND CIR.country_id = C.id AND I.country_id = C.id order by C.name,year''', cx.conn)
 #-----------------------------------
 
 #-----------------------------------
 Taux_chomage= pd.read_sql_query('''SELECT C.name as name  , S.year as year , S.value as value ,WR.parent as continent
 FROM countries C , countries_in_regions CIR , world_regions WR , sjr S where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND S.country_id = C.id order by C.name ''', cx.conn)
+CIR.region_id = WR.id  AND CIR.country_id = C.id AND S.country_id = C.id order by C.name,year ''', cx.conn)
 #-----------------------------------
 
 #----------------------------------
 Military_personnal_index_score =pd.read_sql_query(''' SELECT C.name as name  , G.year as year , G.personal as personal ,WR.parent as continent
 FROM countries C , countries_in_regions CIR , world_regions WR , gmi G  where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND G.country_id = C.id order by C.name ''', cx.conn)
+CIR.region_id = WR.id  AND CIR.country_id = C.id AND G.country_id = C.id order by C.name,year ''', cx.conn)
 #----------------------------------
 
 #----------------------------------
 Military_expenditure_index_score =pd.read_sql_query(''' SELECT C.name as name  , G.year as year , G.expenditure as expenditure ,WR.parent as continent
 FROM countries C , countries_in_regions CIR , world_regions WR , gmi G  where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND G.country_id = C.id order by C.name ''', cx.conn)
+CIR.region_id = WR.id  AND CIR.country_id = C.id AND G.country_id = C.id order by C.name,year''', cx.conn)
 #----------------------------------
 
 #----------------------------------
@@ -62,7 +62,7 @@ CIR.region_id = WR.id  AND CIR.country_id = C.id AND AE.country_id = C.id order 
 #----------------------------------
 Pourcentage_utulisation_internet =pd.read_sql_query('''  SELECT C.name as name  , IP.year as year , IP.value as value ,WR.parent as continent
 FROM countries C , countries_in_regions CIR , world_regions WR , IPU IP where
-CIR.region_id = WR.id  AND CIR.country_id = C.id AND IP.country_id = C.id order by C.name ''', cx.conn)
+CIR.region_id = WR.id  AND CIR.country_id = C.id AND IP.country_id = C.id order by C.name,year ''', cx.conn)
 #-----------------------------------
 
 #----------------------------------
