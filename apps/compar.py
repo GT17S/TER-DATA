@@ -13,11 +13,11 @@ all_options= ["Taux Piratage Logiciel","Taux Imigration","Taux de Chomage","Pour
               ,"Nombre Homicides","Nombre Serveur Securisé","Evolution PIB","Acces électricité"]
 
 layout = html.Div([
-    html.H1('Vizualization des données', style={"textAlign": "center"}),
+    html.H1('Visualization des données', style={"textAlign": "center"}),
 
     html.Div([
         html.Div([
-            html.Pre(children="Type de donné à vizualiser ", style={"fontSize":"170%"}),
+            html.Pre(children="Type de donné à visualiser ", style={"fontSize":"170%"}),
             dcc.Dropdown(
                 id='pymnt-dropdown', value='Taux Piratage Logiciel', clearable=False,
                 persistence=True, persistence_type='session',
