@@ -31,6 +31,12 @@ Cette installation se fait sur le terminal(bash) de l’IDE de pycharm de cette 
 ###### psycopg2   `pip install psycopg2` 
 <br>Pour notre fichier Excel :
 ###### ODBC   https://www.postgresql.org/ftp/odbc/
+
+### Fichier de connection PostgreSQL avec Python3.9
+Après avoir installé tous les outils nécessaires pour le bon fonctionnement du code de projet, vous devez accéder au fichier 
+[conxion.py](./importation/Database/conxion.py) et ensuite mettre l'identifiant et le mot de passe saisie lors de l'installation de PostgreSQL,
+et cela afin de pouvoir connecter Python avec la base de données.
+
 ## Données ajoutées dans la base de données
 Le projet initialement était basé sur des liens donner par le chargé de ce projet afin de les traiter et de créer une version de qualité, compréhensible et concise pour les intégrer dans la bases de données.
 
@@ -43,7 +49,7 @@ de peuplement des tables.
 Une fois le code correctement compilé et exécuté l'utilisateur se retrouve devant l'interface principale depuis laquelle il peut commencer à visualiser et comparer
 les différentes datasets issue des liens donner initialement lors de début de projet.
 
-## Exemple de Manipulation 
+
 ## Contribution
 Seuls les membres de l'organisation pouvant actuellement prendre part à se projet et le maintenir.
 
