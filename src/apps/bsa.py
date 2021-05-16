@@ -57,7 +57,7 @@ def update_output(num_clicks, val_selected):
         fig = px.choropleth(df, locations='nicename', color='value',
                             locationmode='country names',
                             color_continuous_scale=px.colors.sequential.Plasma,
-                            title='Valeur BSA des  différents pays du monde ', animation_frame='year',
+                            title='Valeur BSA des différents pays du monde ', animation_frame='year',
                             )
 
         fig.update_layout(title=dict(font=dict(size=28),x=0.5,xanchor='center'),
@@ -156,7 +156,6 @@ def inche(str):
     #-------------------------
     ax2 = figure.add_subplot(522)
     ax2.plot(df2['year'], df2['value'], color='crimson')
-    ax2.legend(['BSA Value'])
     ax2.set_xlabel('Années')
     ax2.set_ylabel('Valeur BSA')
     ax2.set_title('Evolution des valeurs BSA à partir de 1990 ')
@@ -165,37 +164,33 @@ def inche(str):
     # -------------------------
     ax3 = figure.add_subplot(523)
     ax3.plot(df3['year'], df3['percentage_of_total_population'], color='maroon')
-    ax3.legend(['Taux imigrants dans'+ format(', '.join(str))])
     ax3.set_xlabel("Années")
     ax3.set_ylabel("Taux d'imigrants")
-    ax3.set_title("Evolution des taux d'imigrants dans la population exprimé en %  ")
+    ax3.set_title("Evolution des taux d'immigrants dans la population   ")
     #---------------------------
 
     #--------------------------
     ax4 = figure.add_subplot(524)
     ax4.plot(df4['year'], df4['value'], color='lime')
-    ax4.legend(['Internet usage'])
     ax4.set_xlabel("Années")
     ax4.set_ylabel("Utilisation internet en %")
-    ax4.set_title("Evolution d'utilisation d'internet en %  ")
+    ax4.set_title("Evolution des taux  d'utilisation d'internet ")
     #-------------------------
 
     #------------------------
     ax5 = figure.add_subplot(525)
     ax5.plot(df5['year'], df5['value'], color='c')
-    ax5.legend(['PIB'])
     ax5.set_xlabel('Années')
     ax5.set_ylabel('Valeur de PIB')
-    ax5.set_title('Evolution de pib à partir 1990')
+    ax5.set_title('Evolution de pib à partir  de 1990')
     #------------------------
 
     # -----------------------------
     ax6 = figure.add_subplot(521)
     ax6.plot(df6['year'], df6['index'], color='gold')
-    ax6.legend([''])
     ax6.set_ylabel('Taux des Logiciels piratés')
     ax6.set_xlabel("Années")
-    ax6.set_title('Evolution des taux de piratage de logiciel en %')
+    ax6.set_title('Evolution des taux de piratage de logiciels ')
     # ------------------------------------------
 
     # ----------------------------------------
@@ -208,7 +203,7 @@ def inche(str):
     legend = ax7.legend(loc='upper left', shadow=True, fontsize='x-large', prop={'size': 7})
     ax7.set_ylabel('Regime Politique')
     ax7.set_xlabel("Années")
-    ax7.set_title('Evolution de Régime Politique de pays')
+    ax7.set_title('Evolution du Régime Politique ')
     # ---------------------------------------
 
     # ---------------------------------------
@@ -216,7 +211,7 @@ def inche(str):
     ax8.plot(df8['year'], df8['value'], color='plum')
     ax8.set_ylabel('Nombre serveur sécurisé ')
     ax8.set_xlabel("Années")
-    ax8.set_title('Le nombre de serveurs sécurisés par million d’habitants')
+    ax8.set_title('Le nombre de serveur sécurisé par millions d’habitants')
     # --------------------------------------
 
     # ---------------------------------------
@@ -224,7 +219,7 @@ def inche(str):
     ax9.plot(df9['year'], df9['value'], color='palegreen')
     ax9.set_ylabel('Taux de Chomage')
     ax9.set_xlabel("Années")
-    ax9.set_title('Taux de chomage exprimé en %')
+    ax9.set_title('Taux de chômage ')
     # ---------------------------------------
 
     # --------------------------------------
@@ -232,7 +227,7 @@ def inche(str):
     ax10.plot(df10['year'], df10['value'], color='burlywood')
     ax10.set_ylabel('Accés électricité')
     ax10.set_xlabel("Années")
-    ax10.set_title("Accès à l'électricité éxprimé en % ")
+    ax10.set_title("Taux accès à l'électricité ")
     # --------------------------------------
 
 
