@@ -9,6 +9,7 @@ Evolution_de_nombre_de_personels = ('''
             select personal,year
             from gmi g,countries s
             where g.country_id=s.id and s.nicename=%s
+            order by year
             ''')
 
 Evolution_des_valeurs_BSA_depuis_1990 = ('''
