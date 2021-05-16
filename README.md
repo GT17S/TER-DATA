@@ -1,5 +1,5 @@
 # Projet de recherche : contrefaçon de logiciels dans le monde. Evolution dans le temps et dans l’espace.
-Le projet à pour but l’observation et formulation des hypothèses explicatives sur le piratage des  logiciels. L’analyse des données, leur traitement et leur visualisation sont des parties essentielles pour réaliser les enjeux de projet, et tous cela en proposant une base de données de nature diverse (économie, politique, société…) en la croisant avec celle déjà donnée au départ « BSA ».
+Le projet à pour but l’observation et formulation des hypothèses explicatives sur le piratage des  logiciels. L’analyse des données, leur traitement et leur visualisation sont des parties essentielles pour réaliser les enjeux de ce  projet, et tous cela en proposant une base de données de nature diverse (économie, politique, société…) puis de les croiser avec celle déjà donnée au départ « BSA ».
 
 Ce projet est réalisé dans le cadre de l'UE TER en Master 1 Data Scale informatique à l'Université de Versailles Saint-Quentin en Yvelines, encadré par Mr Stéphane LOPES.
 
@@ -21,17 +21,20 @@ Et cela afin de pouvoir utiliser les bibliothèques et les scripts nécessaires 
  Avant de pouvoir lancer le main de code, on doit tout d’abord interpréteur le code, et ce code à besoins l’installation des bibliothèques nécessaires pour la bonne interprétation de ce dernier et de l’exécuter par la suite.
 Cette installation se fait sur le terminal(bash) de l’IDE de pycharm de cette manière :
 <br>pip install ‘’nombibliotheque’’
-<br>Pour notre projet :
+<br>Pour notre projet Python:
 ###### Dash  `pip install dash`
 ###### Matplotlib  `pip install matplotlib`
 ###### Plotly  `pip install plotly`
 ###### Pandas  `pip install pandas`
 ###### Tkinter   `pip install tk`
-
+###### mplcursors   `pip install mplcursors`
+###### psycopg2   `pip install psycopg2` 
+<br>Pour notre fichier Excel :
+###### ODBC   https://www.postgresql.org/ftp/odbc/
 ## Données ajoutées dans la base de données
 Le projet initialement était basé sur des liens donner par le chargé de ce projet afin de les traiter et de créer une version de qualité, compréhensible et concise pour les intégrer dans la bases de données.
 
-Le lien suivant vous emmène vers le [README.md](/Database/DATASETS/README.md)
+Le lien suivant vous emmène vers le [README.md](./Database/DATASETS/README.md)
 des datasets qui explique la façon de traitement de données et comment les intégrer dans la base de donnée avec des scripts SQL et des fichiers CSV comme fichiers sources
 de peuplement des tables.
 
