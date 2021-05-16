@@ -34,7 +34,7 @@ Cette installation se fait sur le terminal(bash) de l’IDE de pycharm de cette 
 ## Données ajoutées dans la base de données
 Le projet initialement était basé sur des liens donner par le chargé de ce projet afin de les traiter et de créer une version de qualité, compréhensible et concise pour les intégrer dans la bases de données.
 
-Le lien suivant vous emmène vers le [README.md](./Database/DATASETS/README.md)
+Le lien suivant vous emmène vers le [README.md](./importation/Database/DATASETS/README.md)
 des datasets qui explique la façon de traitement de données et comment les intégrer dans la base de donnée avec des scripts SQL et des fichiers CSV comme fichiers sources
 de peuplement des tables.
 
