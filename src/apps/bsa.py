@@ -1,4 +1,6 @@
 from tkinter import Label, font
+
+import mplcursors as mplcursors
 import pandas as pd
 from tkinter import *
 import plotly.express as px
@@ -64,24 +66,7 @@ def update_output(num_clicks, val_selected):
             inche(val_selected)
 
         return ('Le pays est : "{}" '.format(val_selected), fig)
-'''
-def hide_widget(str):
-    wb = Workbook()
-    sheet1 = wb.add_sheet('Sheet 1')
-    df = pd.read_sql_query(BSArq.Bsa_value, cx.conn, params=str)
-    sheet1.write(0, 0, 'PAYS')
-    sheet1.write(0, 1, 'Annee')
-    sheet1.write(0, 2, 'Valeur')
-    i=0
-    for py,an,va in df.iterrows():
-        i = i + 1
-        sheet1.write(i, 0, py)
-        sheet1.write(i, 1, an)
-        sheet1.write(i, 2, va)
-    wb.save('xlwt example.xls')
-    print(str)
-    print("it works")
-'''
+
 def inche(str):
     import pandas as pd
     from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -160,7 +145,7 @@ def inche(str):
 
     #-------------------------
     ax1 = figure.add_subplot(526)
-    ax1.plot(df1['year'], df1['personal'], color='red')
+    ax1.plot(df1['year'], df1['personal'], color='m')
     figure.tight_layout(pad=8)  # add space betwenn figure
     ax1.set_xlabel('Années')
     ax1.set_ylabel('Valeur de personnels')
@@ -170,7 +155,7 @@ def inche(str):
 
     #-------------------------
     ax2 = figure.add_subplot(522)
-    ax2.plot(df2['year'], df2['value'], color='red')
+    ax2.plot(df2['year'], df2['value'], color='crimson')
     ax2.legend(['BSA Value'])
     ax2.set_xlabel('Années')
     ax2.set_ylabel('Valeur BSA')
@@ -179,7 +164,7 @@ def inche(str):
 
     # -------------------------
     ax3 = figure.add_subplot(523)
-    ax3.plot(df3['year'], df3['percentage_of_total_population'], color='red')
+    ax3.plot(df3['year'], df3['percentage_of_total_population'], color='maroon')
     ax3.legend(['Taux imigrants dans'+ format(', '.join(str))])
     ax3.set_xlabel("Années")
     ax3.set_ylabel("Taux d'imigrants")
@@ -188,7 +173,7 @@ def inche(str):
 
     #--------------------------
     ax4 = figure.add_subplot(524)
-    ax4.plot(df4['year'], df4['value'], color='green')
+    ax4.plot(df4['year'], df4['value'], color='lime')
     ax4.legend(['Internet usage'])
     ax4.set_xlabel("Années")
     ax4.set_ylabel("Utilisation internet en %")
@@ -197,7 +182,7 @@ def inche(str):
 
     #------------------------
     ax5 = figure.add_subplot(525)
-    ax5.plot(df5['year'], df5['value'], color='g')
+    ax5.plot(df5['year'], df5['value'], color='c')
     ax5.legend(['PIB'])
     ax5.set_xlabel('Années')
     ax5.set_ylabel('Valeur de PIB')
@@ -206,7 +191,7 @@ def inche(str):
 
     # -----------------------------
     ax6 = figure.add_subplot(521)
-    ax6.plot(df6['year'], df6['index'], color='g')
+    ax6.plot(df6['year'], df6['index'], color='gold')
     ax6.legend([''])
     ax6.set_ylabel('Taux des Logiciels piratés')
     ax6.set_xlabel("Années")
@@ -228,7 +213,7 @@ def inche(str):
 
     # ---------------------------------------
     ax8 = figure.add_subplot(528)
-    ax8.plot(df8['year'], df8['value'], color='b')
+    ax8.plot(df8['year'], df8['value'], color='plum')
     ax8.set_ylabel('Nombre serveur sécurisé ')
     ax8.set_xlabel("Années")
     ax8.set_title('Le nombre de serveurs sécurisés par million d’habitants')
@@ -236,7 +221,7 @@ def inche(str):
 
     # ---------------------------------------
     ax9 = figure.add_subplot(529)
-    ax9.plot(df9['year'], df9['value'], color='g')
+    ax9.plot(df9['year'], df9['value'], color='palegreen')
     ax9.set_ylabel('Taux de Chomage')
     ax9.set_xlabel("Années")
     ax9.set_title('Taux de chomage exprimé en %')
@@ -244,7 +229,7 @@ def inche(str):
 
     # --------------------------------------
     ax10 = figure.add_subplot(5, 2, 10)
-    ax10.plot(df10['year'], df10['value'], color='b')
+    ax10.plot(df10['year'], df10['value'], color='burlywood')
     ax10.set_ylabel('Accés électricité')
     ax10.set_xlabel("Années")
     ax10.set_title("Accès à l'électricité éxprimé en % ")

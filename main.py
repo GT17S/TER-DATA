@@ -8,7 +8,7 @@ from src.apps import bsa,compar,app
 app.app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
-        dcc.Link(' Cliquez ici pour la comparaison des différents données ', href='/src/apps/compar',style={"color": "red", "size":"30"}),
+        dcc.Link(' Cliquez ici pour la comparaison des différentes données ', href='/src/apps/compar',style={"color": "red", "size":"30"}),
     ], className="row"),
     html.Div(id='page-content', children=[])
 ])
