@@ -166,7 +166,7 @@ def inche(str):
     ax3.plot(df3['year'], df3['percentage_of_total_population'], color='maroon')
     ax3.set_xlabel("Années")
     ax3.set_ylabel("Taux d'imigrants")
-    ax3.set_title("Evolution des taux d'immigrants dans la population   ")
+    ax3.set_title("Evolution des taux d'immigrants dans la population")
     #---------------------------
 
     #--------------------------
